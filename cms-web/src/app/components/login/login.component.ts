@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
       this.username, this.password
     ).subscribe(response => {
       this.configService.setToken(response.jwt);
+      this.restService.getLoggedInUser().subscribe(response => {
+        this.configService.setUser(response);
+        console.log(this.configService.getUser());
+      })
     });
   }
 }

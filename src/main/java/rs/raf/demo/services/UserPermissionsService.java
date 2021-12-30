@@ -1,11 +1,13 @@
 package rs.raf.demo.services;
 
+import org.springframework.stereotype.Service;
 import rs.raf.demo.model.UserPermissions;
 import rs.raf.demo.repositories.UserPermissionsRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserPermissionsService implements IService<UserPermissions, Long> {
 
     private final UserPermissionsRepository repository;

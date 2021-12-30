@@ -1,0 +1,87 @@
+<h3>Edit User</h3>
+
+<div>
+  <form (submit)="submitData()" class="mb-5">
+    <div class="form-group mb-2">
+      <label for="email">E-mail:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="E-mail"
+        [(ngModel)]="email"
+      />
+    </div>
+    <div class="form-group mb-2">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Name"
+          [(ngModel)]="name"
+        />
+      </div>
+      <div class="form-group mb-2">
+        <label for="surname">Surname:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="surname"
+          name="surname"
+          placeholder="Surname"
+          [(ngModel)]="surname"
+        />
+      </div>
+    <br />
+    <div class="form-check">
+      <input
+        [(ngModel)]="readPermission"
+        name="readPermission"
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="readPermission"
+      />
+      <label class="form-check-label" for="readPermission"> Read permission </label>
+    </div>
+    <div class="form-check">
+      <input
+        [(ngModel)]="createPermission"
+        name="createPermission"
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="createPermission"
+      />
+      <label class="form-check-label" for="createPermission"> Create permission </label>
+    </div>
+    <div class="form-check">
+      <input
+        [(ngModel)]="updatePermission"
+        name="updatePermission"
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="updatePermission"
+      />
+      <label class="form-check-label" for="updatePermission"> Update permission </label>
+    </div>
+    <div class="form-check">
+        <input
+          [(ngModel)]="deletePermission"
+          name="deletePermission"
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="deletePermission"
+        />
+        <label class="form-check-label" for="deletePermission"> Delete permission </label>
+      </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

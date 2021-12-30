@@ -1,0 +1,36 @@
+<div *ngIf="data.length > 0">
+    <p>Users: {{ data.length }}</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Read permission</th>
+            <th scope="col">Create permission</th>
+            <th scope="col">Update permission</th>
+            <th scope="col">Delete permission</th>
+            <th scope="col">Delete User</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of data; index as i">
+            <th scope="row">{{ user.id }}</th>
+            <td>
+                <div *ngIf="this.canUpdate">
+                    <a [routerLink]="['/users', user.id]">{{user.username}} </a>
+                </div>
+                <ng-template #elseBlock>{{user.username}}</ng-template>
+            </td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.surname }}</td>
+            <td> {{ user.permissions.canReadUsers == true }} </td>
+            <td> {{ user.permissions.canCreateUsers == true }} </td>
+            <td> {{ user.permissions.canUpdateUsers == true }} </td>
+            <td> {{ user.permissions.canDeleteUsers == true }} </td>
+            <td> <button type="button" (click)="onDelete(user.id)" class="btn btn-danger" [disabled]="this.canDelete == false">Delete</button> </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
