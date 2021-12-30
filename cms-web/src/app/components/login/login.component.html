@@ -1,0 +1,20 @@
+<div>
+    <h3>Login page</h3>
+  
+    <div>
+      <form (submit)="login()" class="mb-5">
+        <div class="form-group mb-2">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="username" [(ngModel)]="username">
+        </div>
+        <br/>
+        <div class="form-group mb-2">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password" name="password" placeholder="password" [(ngModel)]="password">
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  
