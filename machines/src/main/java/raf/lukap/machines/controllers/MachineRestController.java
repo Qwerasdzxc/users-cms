@@ -173,7 +173,7 @@ public class MachineRestController {
     public ResponseEntity<?> restartMachine(@PathVariable Long id, @RequestParam(value = "date", required = false) Optional<Long> scheduleDate, Authentication authentication) {
         final User user = userService.findByUsername(authentication.getName());
         final UserPermissions permissions = user.getPermissions();
-        if (!permissions.isCanStopMachines())
+        if (!permissions.isCanRestartMachines())
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
         final Optional<Machine> machine = machineService.findById(id);

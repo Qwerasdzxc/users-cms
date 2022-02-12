@@ -37,6 +37,5 @@ public class MachineOperationError {
 
     @ManyToOne
     @JoinColumn(name = "MACHINE_ID", referencedColumnName = "ID")
-    @JsonIgnore
     private Machine machine;
 }
