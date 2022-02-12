@@ -4,6 +4,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Name</th>
             <th scope="col">Message</th>
             <th scope="col">Operation</th>
             <th scope="col">Timestamp</th>
@@ -12,6 +13,7 @@
         <tbody>
         <tr *ngFor="let opError of errors; index as i">
             <th scope="row">{{ opError.id }}</th>
+            <td>{{ opError.machine.name }}</td>
             <td>{{ opError.message }}</td>
             <td>{{ opError.operation }}</td>
             <td>{{ opError.createdAt }}</td>

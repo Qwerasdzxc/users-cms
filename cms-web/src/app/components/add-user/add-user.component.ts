@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest/rest.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class AddUserComponent implements OnInit {
   createMachines: boolean;
   destroyMachines: boolean;
 
-  constructor(private restService: RestService) {
+  constructor(private restService: RestService, private router: Router) {
     this.email = "";
     this.name = "";
     this.surname = "";
@@ -52,7 +53,7 @@ export class AddUserComponent implements OnInit {
       this.email, this.password, this.name, this.surname, this.readPermission, this.createPermission, this.updatePermission, this.deletePermission,
       this.searchMachines, this.startMachines, this.stopMachines, this.restartMachines, this.createMachines, this.destroyMachines
     ).subscribe(result => {
-      console.log(result);
+      this.router.navigateByUrl('/users');
     });
   }
 }

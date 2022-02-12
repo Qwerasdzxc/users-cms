@@ -9,7 +9,9 @@ import { MachineOperationErrorsComponent } from './components/machine-operation-
 import { MachinesTableComponent } from './components/machines-table/machines-table.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { EditUserGuard } from './guards/edit-user.guard';
+import { NewMachineGuard } from './guards/new-machine.guard';
 import { NewUserGuard } from './guards/new-user.guard';
+import { SearchMachinesGuard } from './guards/search-machines.guard';
 
 const routes: Routes = [
   {
@@ -36,11 +38,13 @@ const routes: Routes = [
   },
   {
     path: "machines",
-    component: MachinesTableComponent
+    component: MachinesTableComponent,
+    canActivate: [SearchMachinesGuard],
   },
   {
     path: "new-machine",
     component: AddMachineComponent,
+    canActivate: [NewMachineGuard],
   },
   {
     path: "operation-errors",

@@ -18,6 +18,13 @@ export class EditUserComponent implements OnInit {
   updatePermission: boolean;
   deletePermission: boolean;
 
+  searchMachines: boolean;
+  startMachines: boolean;
+  stopMachines: boolean;
+  restartMachines: boolean;
+  createMachines: boolean;
+  destroyMachines: boolean;
+
 
   constructor(private restService: RestService, private _Activatedroute:ActivatedRoute) {
     this.email = "";
@@ -27,6 +34,12 @@ export class EditUserComponent implements OnInit {
     this.createPermission = false;
     this.updatePermission = false;
     this.deletePermission = false;
+    this.searchMachines = false;
+    this.startMachines = false;
+    this.stopMachines = false;
+    this.restartMachines = false;
+    this.createMachines = false;
+    this.destroyMachines = false;
 
     let id = this._Activatedroute.snapshot.paramMap.get("id");
     this.loadData(id!);
@@ -45,6 +58,12 @@ export class EditUserComponent implements OnInit {
       this.createPermission = result.permissions.canCreateUsers;
       this.updatePermission = result.permissions.canUpdateUsers;
       this.deletePermission = result.permissions.canDeleteUsers;
+      this.searchMachines = result.permissions.canSearchMachines;
+      this.startMachines = result.permissions.canStartMachines;
+      this.stopMachines = result.permissions.canStopMachines;
+      this.restartMachines = result.permissions.canRestartMachines;
+      this.createMachines = result.permissions.canCreateMachines;
+      this.destroyMachines = result.permissions.canDestroyMachines;
     })
   }
 

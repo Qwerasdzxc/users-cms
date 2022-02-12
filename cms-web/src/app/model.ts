@@ -36,4 +36,5 @@ export interface MachineOperationError {
     message: string;
     operation: string;
     createdAt: string;
+    machine: Machine;
 }
