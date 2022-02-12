@@ -18,14 +18,16 @@ export interface UserPermissions {
     canDeleteUsers: boolean;
 }
 
-// "id": 1,
-// "username": "user1",
-// "name": "Student",
-// "surname": "Studentic",
-// "permissions": {
-//     "id": 1,
-//     "canCreateUsers": true,
-//     "canReadUsers": true,
-//     "canUpdateUsers": true,
-//     "canDeleteUsers": true
-// }
+export interface Machine {
+    id: number;
+    active: boolean,
+    name: string,
+    status: string
+}
+
+export interface MachineOperationError {
+    id: number;
+    message: string;
+    operation: string;
+    createdAt: string;
+}

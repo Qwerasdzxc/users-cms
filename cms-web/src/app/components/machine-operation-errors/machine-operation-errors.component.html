@@ -1,0 +1,21 @@
+<div *ngIf="errors.length > 0">
+    <p>Machine Operation Errors: {{ errors.length }}</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Message</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Timestamp</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let opError of errors; index as i">
+            <th scope="row">{{ opError.id }}</th>
+            <td>{{ opError.message }}</td>
+            <td>{{ opError.operation }}</td>
+            <td>{{ opError.createdAt }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

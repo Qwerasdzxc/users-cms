@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from '../config/config.service';
-import { LoginResponse, User } from 'src/app/model';
+import { LoginResponse, Machine, MachineOperationError, User } from 'src/app/model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -120,5 +120,98 @@ export class RestService {
         headers: {'Authorization': `Bearer ${token}`}
       }
     )
+  }
+
+  createMachine(
+    name: string,
+  ): Observable<Machine> {
+    let token = this.configService.getToken();
+    return this.httpClient.post<Machine>(
+      `${this.apiUrl}/api/machines`,
+      {
+        name: name,
+      },
+      {
+        headers: {'Authorization': `Bearer ${token}`}
+      }
+    )
+  }
+
+  getMachines(from: string | null, to: string | null, name: string | null, status: string | null): Observable<Array<Machine>> {
+    let token = this.configService.getToken();
+    var params = new HttpParams();
+    if (from != null) {
+      params = params.set('from', from);
+    }
+    if (to != null) {
+      params = params.set('to', to);
+    }
+    if (name != null) {
+      params = params.set('name', name);
+    }
+    if (status != null) {
+      params = params.set('status', status);
+    }
+
+    return this.httpClient.get<Array<Machine>>(
+      `${this.apiUrl}/api/machines/all`, {
+        params: params,
+        headers: {'Authorization': `Bearer ${token}`}
+     }
+    );
+  }
+
+  startMachine(machineId: number, msDelay: number): Observable<void> {
+    let token = this.configService.getToken();
+    return this.httpClient.post<void>(
+      `${this.apiUrl}/api/machines/start/${machineId}`,
+      {},
+      {
+        params: {'date': msDelay},
+        headers: {'Authorization': `Bearer ${token}`}
+     }
+    );
+  }
+
+  restartMachine(machineId: number, msDelay: number): Observable<void> {
+    let token = this.configService.getToken();
+    return this.httpClient.post<void>(
+      `${this.apiUrl}/api/machines/restart/${machineId}`,
+      {},
+      {
+        params: {'date': msDelay},
+        headers: {'Authorization': `Bearer ${token}`}
+     }
+    );
+  }
+
+  stopMachine(machineId: number, msDelay: number): Observable<void> {
+    let token = this.configService.getToken();
+    return this.httpClient.post<void>(
+      `${this.apiUrl}/api/machines/stop/${machineId}`,
+      {},
+      {
+        params: {'date': msDelay},
+        headers: {'Authorization': `Bearer ${token}`}
+     }
+    );
+  }
+
+  destroyMachine(id: number): Observable<void> {
+    let token = this.configService.getToken();
+    return this.httpClient.delete<void>(
+      `${this.apiUrl}/api/machines/${id}`, {
+        headers: {'Authorization': `Bearer ${token}`}
+     }
+    );
+  }
+
+  getOperationErrors(): Observable<Array<MachineOperationError>> {
+    let token = this.configService.getToken();
+    return this.httpClient.get<Array<MachineOperationError>>(
+      `${this.apiUrl}/api/operation-errors/all`, {
+        headers: {'Authorization': `Bearer ${token}`}
+     }
+    );
   }
 }

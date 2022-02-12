@@ -1,0 +1,122 @@
+<div *ngIf="data.length > 0">
+    <p>Machines: {{ data.length }}</p>
+
+    <div class="form-group mb-2">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Machine name"
+          [(ngModel)]="searchName"
+        />
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="status">Status:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="status"
+          name="status"
+          placeholder="Machine status"
+          [(ngModel)]="searchStatus"
+        />
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="searchFrom">From:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="searchFrom"
+          name="searchFrom"
+          placeholder="From"
+          [(ngModel)]="searchFrom"
+        />
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="searchTo">To:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="searchTo"
+          name="searchTo"
+          placeholder="To"
+          [(ngModel)]="searchTo"
+        />
+      </div>
+
+      <button class="btn btn-warning"
+      (click)="searchMachines()"
+      type="button">
+        Search
+      </button>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let machine of data; index as i">
+            <th scope="row">{{ machine.id }}</th>
+            <td>{{ machine.name }}</td>
+            <td>{{ machine.status }}</td>
+            <td>
+                <button class="btn btn-primary"
+                        (click)="startMachine(machine.id)"
+                        type="button"
+                        [disabled]="machine.status !== 'STOPPED'">
+                  Start
+                </button>
+              </td>
+              <td>
+                  <button class="btn btn-primary"
+                          (click)="stopMachine(machine.id)"
+                          type="button"
+                          [disabled]=" machine.status !== 'RUNNING'">
+        
+                Stop
+                  </button>
+        
+              </td>
+              <td>
+                <button class="btn btn-warning"
+                        (click)="restartMachine(machine.id)"
+                        type="button"
+                        [disabled]="machine.status !== 'RUNNING'">
+                  Restart
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger"
+                        (click)="destroyMachine(machine.id)"
+                        type="button"
+                        [disabled]="machine.status !== 'STOPPED'">
+                  Destroy
+                </button>
+            </td>
+            <td>
+                <div class="form-group mb-2">
+                    <label for="msDelay">Delay:</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="msDelay"
+                      name="msDelay"
+                      placeholder="0"
+                      [(ngModel)]="msDelay"
+                    />
+                  </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
