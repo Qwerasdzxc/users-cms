@@ -74,7 +74,13 @@ export class RestService {
     readPermission: boolean,
     createPermission: boolean,
     updatePermission: boolean,
-    deletePermission: boolean
+    deletePermission: boolean,
+    searchMachines: boolean,
+    startMachines: boolean,
+    stopMachines: boolean,
+    restartMachines: boolean,
+    createMachines: boolean,
+    destroyMachines: boolean,
   ): Observable<User> {
     let token = this.configService.getToken();
     return this.httpClient.post<User>(
@@ -87,7 +93,13 @@ export class RestService {
         readPermission: readPermission,
         createPermission: createPermission,
         updatePermission: updatePermission,
-        deletePermission: deletePermission
+        deletePermission: deletePermission,
+        canSearchMachines: searchMachines,
+        canStartMachines: startMachines,
+        canStopMachines: stopMachines,
+        canRestartMachines: restartMachines,
+        canCreateMachines: createMachines,
+        canDestroyMachines: destroyMachines
       },
       {
         headers: {'Authorization': `Bearer ${token}`}

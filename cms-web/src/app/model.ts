@@ -16,6 +16,12 @@ export interface UserPermissions {
     canReadUsers: boolean;
     canUpdateUsers: boolean;
     canDeleteUsers: boolean;
+    canSearchMachines: boolean;
+    canStartMachines: boolean;
+    canStopMachines: boolean;
+    canRestartMachines: boolean;
+    canCreateMachines: boolean;
+    canDestroyMachines: boolean;
 }
 
 export interface Machine {

@@ -11,6 +11,12 @@
             <th scope="col">Create permission</th>
             <th scope="col">Update permission</th>
             <th scope="col">Delete permission</th>
+            <th scope="col">Stop machines permission</th>
+            <th scope="col">Start machines permission</th>
+            <th scope="col">Create machines permission</th>
+            <th scope="col">Search machines permission</th>
+            <th scope="col">Destory machines permission</th>
+            <th scope="col">Restart machines permission</th>
             <th scope="col">Delete User</th>
         </tr>
         </thead>
@@ -29,6 +35,12 @@
             <td> {{ user.permissions.canCreateUsers == true }} </td>
             <td> {{ user.permissions.canUpdateUsers == true }} </td>
             <td> {{ user.permissions.canDeleteUsers == true }} </td>
+            <td> {{ user.permissions.canStopMachines == true }} </td>
+            <td> {{ user.permissions.canStartMachines == true }} </td>
+            <td> {{ user.permissions.canCreateMachines == true }} </td>
+            <td> {{ user.permissions.canSearchMachines == true }} </td>
+            <td> {{ user.permissions.canDestroyMachines == true }} </td>
+            <td> {{ user.permissions.canRestartMachines == true }} </td>
             <td> <button type="button" (click)="onDelete(user.id)" class="btn btn-danger" [disabled]="this.canDelete == false">Delete</button> </td>
         </tr>
         </tbody>

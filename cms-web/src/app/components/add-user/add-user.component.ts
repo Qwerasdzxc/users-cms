@@ -18,16 +18,29 @@ export class AddUserComponent implements OnInit {
   updatePermission: boolean;
   deletePermission: boolean;
 
+  searchMachines: boolean;
+  startMachines: boolean;
+  stopMachines: boolean;
+  restartMachines: boolean;
+  createMachines: boolean;
+  destroyMachines: boolean;
 
   constructor(private restService: RestService) {
     this.email = "";
     this.name = "";
     this.surname = "";
     this.password = "";
+
     this.readPermission = false;
     this.createPermission = false;
     this.updatePermission = false;
     this.deletePermission = false;
+    this.searchMachines = false;
+    this.startMachines = false;
+    this.stopMachines = false;
+    this.restartMachines = false;
+    this.createMachines = false;
+    this.destroyMachines = false;
   }
 
   ngOnInit(): void {
@@ -36,7 +49,8 @@ export class AddUserComponent implements OnInit {
 
   submitData(): void {
     this.restService.createUser(
-      this.email, this.password, this.name, this.surname, this.readPermission, this.createPermission, this.updatePermission, this.deletePermission
+      this.email, this.password, this.name, this.surname, this.readPermission, this.createPermission, this.updatePermission, this.deletePermission,
+      this.searchMachines, this.startMachines, this.stopMachines, this.restartMachines, this.createMachines, this.destroyMachines
     ).subscribe(result => {
       console.log(result);
     });
